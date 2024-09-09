@@ -11,6 +11,7 @@ on:
 env:
   DOCKER_TTY: ""  # using `docker run -t` seems to not work in github actions, maybe related to https://github.com/actions/runner/issues/241
   REL_TAG: ${{ github.event.inputs.tag }}
+  DOCKER_USER: iradorca
 
 jobs:
   build-and-upload:
@@ -23,8 +24,8 @@ jobs:
         uses: docker/login-action@v1.14.1
         with:
           registry: docker.io
-          username: weaveworksigniteci
-          password: ${{ secrets.DOCKERHUB_PASSWORD_WEAVEWORKSIGNITECI }}
+          username: iradorca
+          password: ${{ secrets.DOCKERHUB_PASSWORD_IRADORCA }}
       - name: Build binaries and push sandbox image
         run: make release
       - name: Prepare assets
